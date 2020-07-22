@@ -6,4 +6,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\EdgExplorer.Shared.ViewModels\EdgExplorer.Shared.ViewModels.csproj" />
+  </ItemGroup>
+
 </Project>

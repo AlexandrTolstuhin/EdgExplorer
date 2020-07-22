@@ -1,22 +1,10 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace EdgExplorer.UI
+namespace EdgExplorer.Shared.ViewModels
 {
-    internal class MainViewModel : INotifyPropertyChanged
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        private string _mainDiskName;
-
-        public string MainDiskName
-        {
-            get => _mainDiskName;
-            set
-            {
-                _mainDiskName = value;
-                OnPropertyChanged();
-            }
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using EdgExplorer.Shared.ViewModels;
+using System.Windows;
 
 namespace EdgExplorer.UI
 {
@@ -10,7 +11,7 @@ namespace EdgExplorer.UI
 
             var window = new MainWindow
             {
-                DataContext = new MainViewModel { MainDiskName = "C:\\"}
+                DataContext = new MainViewModel()
             };
             window.Show();
         }

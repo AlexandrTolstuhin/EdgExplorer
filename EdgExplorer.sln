@@ -7,7 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{429EBBD6-4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{84B0FC18-A89D-4516-B33C-2F12606BFA68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgExplorer.UI", "src\UI\EdgExplorer.UI\EdgExplorer.UI.csproj", "{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgExplorer.UI", "src\UI\EdgExplorer.UI\EdgExplorer.UI.csproj", "{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdgExplorer.Shared.ViewModels", "src\Core\EdgExplorer.Shared.ViewModels\EdgExplorer.Shared.ViewModels.csproj", "{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +21,17 @@ Global
 		{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1CDE33DF-36D1-4A30-B9DE-93A39BB3E9DB} = {84B0FC18-A89D-4516-B33C-2F12606BFA68}
+		{DF26DFB2-02FE-44E3-B0F4-3AD1016DC0EC} = {429EBBD6-4DFC-4235-9986-4CF60247DA80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D15042E3-2095-442D-92CF-AD512953B541}
