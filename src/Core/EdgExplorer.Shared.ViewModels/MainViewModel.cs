@@ -1,49 +1,25 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.IO;
+﻿using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace EdgExplorer.Shared.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        #region Private Fields
-
-        private string _filePath;
-        private FileEntityViewModel _selectedFileEntity;
-
-        #endregion
-
         #region Public Properties
 
-        public string FilePath
-        {
-            get => _filePath;
-            set
-            {
-                _filePath = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<DirectoryTabItemViewModel> DirectoryTabItems { get; set; }
+            = new ObservableCollection<DirectoryTabItemViewModel>();
 
-        public ObservableCollection<FileEntityViewModel> DirectoriesAndFiles { get; set; }
-            = new ObservableCollection<FileEntityViewModel>();
-
-        public FileEntityViewModel SelectedFileEntity
-        {
-            get => _selectedFileEntity;
-            set
-            {
-                _selectedFileEntity = value;
-                OnPropertyChanged();
-            }
-        }
+        public DirectoryTabItemViewModel CurrentDirectoryTabItem { get; set; }
 
         #endregion
 
         #region Commands
 
-        public ICommand OpenCommand { get; }
+        public ICommand AddTabItemCommand { get; }
+
+        public ICommand CloseTabItemCommand { get; }
 
         #endregion
 
@@ -51,31 +27,48 @@ namespace EdgExplorer.Shared.ViewModels
 
         public MainViewModel()
         {
-            OpenCommand = new DelegateCommand(Open);
+            AddTabItemCommand = new DelegateCommand(OnAddTabItem);
+            CloseTabItemCommand = new DelegateCommand(OnCloseTabItem);
 
-            foreach (var drive in Environment.GetLogicalDrives())
-                DirectoriesAndFiles.Add(new DirectoryViewModel(drive));
+            AddTabItemViewModel();
         }
 
         #endregion
 
         #region Commands Methods
 
-        private void Open(object parameter)
+        private void OnAddTabItem(object obj)
         {
-            if (parameter is DirectoryViewModel directoryViewModel)
+            AddTabItemViewModel();
+        }
+
+        private void OnCloseTabItem(object parameter)
+        {
+            if (parameter is DirectoryTabItemViewModel vm)
             {
-                FilePath = directoryViewModel.FullName;
-
-                DirectoriesAndFiles.Clear();
-
-                var directoryInfo = new DirectoryInfo(FilePath);
-
-                foreach (var directory in directoryInfo.GetDirectories())
-                    DirectoriesAndFiles.Add(new DirectoryViewModel(directory));
-
-                foreach (var file in directoryInfo.GetFiles()) DirectoriesAndFiles.Add(new FileViewModel(file));
+                CloseTab(vm);
             }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void AddTabItemViewModel()
+        {
+            var vm = new DirectoryTabItemViewModel();
+
+            DirectoryTabItems.Add(vm);
+
+            CurrentDirectoryTabItem = vm;
+        }
+
+        private void CloseTab(DirectoryTabItemViewModel vm)
+        {
+            var isCurrent = CurrentDirectoryTabItem == vm;
+            DirectoryTabItems.Remove(vm);
+            if (isCurrent)
+                CurrentDirectoryTabItem = DirectoryTabItems.LastOrDefault();
         }
 
         #endregion
