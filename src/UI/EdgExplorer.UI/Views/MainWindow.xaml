@@ -1,0 +1,12 @@
+﻿<Window x:Class="EdgExplorer.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="1024" Width="720"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <TextBlock Text="{Binding MainDiskName}" />
+    </Grid>
+
+</Window>
