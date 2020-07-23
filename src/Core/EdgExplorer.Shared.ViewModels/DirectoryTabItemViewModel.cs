@@ -8,7 +8,7 @@ namespace EdgExplorer.Shared.ViewModels
     {
         #region Private Fields
 
-        private IDirectoryHistory _history;
+        private readonly IDirectoryHistory _history;
 
         #endregion
 
