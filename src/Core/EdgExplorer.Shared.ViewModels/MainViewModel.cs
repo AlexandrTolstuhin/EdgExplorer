@@ -6,7 +6,7 @@ namespace EdgExplorer.Shared.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        #region Public Properties
+        #region Properties
 
         public ObservableCollection<DirectoryTabItemViewModel> DirectoryTabItems { get; set; }
             = new ObservableCollection<DirectoryTabItemViewModel>();
@@ -17,9 +17,9 @@ namespace EdgExplorer.Shared.ViewModels
 
         #region Commands
 
-        public ICommand AddTabItemCommand { get; }
+        public ICommand AddTabItem { get; }
 
-        public ICommand CloseTabItemCommand { get; }
+        public ICommand CloseTabItem { get; }
 
         #endregion
 
@@ -27,8 +27,8 @@ namespace EdgExplorer.Shared.ViewModels
 
         public MainViewModel()
         {
-            AddTabItemCommand = new DelegateCommand(OnAddTabItem);
-            CloseTabItemCommand = new DelegateCommand(OnCloseTabItem);
+            AddTabItem = new DelegateCommand(OnAddTabItem);
+            CloseTabItem = new DelegateCommand(OnCloseTabItem);
 
             AddTabItemViewModel();
         }

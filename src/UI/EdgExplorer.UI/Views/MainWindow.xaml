@@ -52,7 +52,7 @@
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
                                                     <TextBlock Text="{Binding Name}" />
-                                                    <Button Command="{Binding DataContext.CloseTabItemCommand, 
+                                                    <Button Command="{Binding DataContext.CloseTabItem, 
                                                                 RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
                                                             CommandParameter="{Binding}" 
                                                             Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
@@ -64,7 +64,7 @@
                                     </ListBox>
 
                                     <Button Grid.Column="1"
-                                            Command="{Binding AddTabItemCommand}"
+                                            Command="{Binding AddTabItem}"
                                             Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
                                             Content="+" />
 
@@ -93,9 +93,11 @@
 
                                     <StackPanel Orientation="Horizontal">
                                         <Button Content="←" 
-                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                Command="{Binding CurrentDirectoryTabItem.MoveBack}"/>
                                         <Button Content="→" 
-                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
+                                                Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"
+                                                Command="{Binding CurrentDirectoryTabItem.MoveForward}"/>
                                         <Button Content="⟳" 
                                                 Width="{Binding ActualHeight, RelativeSource={RelativeSource Self}}"/>
                                     </StackPanel>
