@@ -35,6 +35,12 @@ namespace EdgExplorer.Shared.ViewModels
 
         #endregion
 
+        #region Public Methods
+
+        public void OnClosing() { }
+
+        #endregion
+
         #region Commands Methods
 
         private void OnAddTabItem(object obj)

@@ -9,10 +9,7 @@ namespace EdgExplorer.UI
         {
             base.OnStartup(e);
 
-            var window = new MainWindow
-            {
-                DataContext = new MainViewModel()
-            };
+            var window = new MainWindow {DataContext = new MainViewModel()};
             window.Show();
         }
     }
