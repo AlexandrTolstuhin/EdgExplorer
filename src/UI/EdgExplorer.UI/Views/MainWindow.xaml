@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="clr-namespace:EdgExplorer.UI"
-        
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+
         Style="{DynamicResource MainWindowStyle}"
 
         Width="1024" Height="720"
@@ -72,15 +73,15 @@
                                                 Orientation="Horizontal"
                                                 HorizontalAlignment="Right"
                                                 VerticalAlignment="Top">
-                                        <Button Content="_" 
+                                        <Button Style="{DynamicResource CollapseWindowButtonStyle}" 
                                                 Width="45" Height="28" 
-                                                Click="Collapse_OnClick"/>
-                                        <Button Content="□"
+                                                Click="Collapse_OnClick" />
+                                        <Button Style="{DynamicResource ExpandWindowButtonStyle}" 
                                                 Width="45" Height="28" 
-                                                Click="Expand_OnClick"/>
-                                        <Button Content="Х"
+                                                Click="Expand_OnClick" />
+                                        <Button Style="{DynamicResource CloseWindowButtonStyle}" 
                                                 Width="45" Height="28" 
-                                                Click="Close_OnClick"/>
+                                                Click="Close_OnClick" />
                                     </StackPanel>
                                 </Grid>
 
@@ -128,6 +129,130 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="CloseWindowButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                UseLayoutRounding="True">
+                            <Viewbox Width="10" Height="10">
+                                <Path Stroke="{TemplateBinding Foreground}"
+                                      StrokeThickness="1"
+                                      Data="M0,0L10,10M0,10L10,0" />
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#E81123" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" Value="#DD5D67" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="CollapseWindowButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                UseLayoutRounding="True">
+                            <Viewbox Width="10" Height="10">
+                                <Path Stroke="{TemplateBinding Foreground}"
+                                      StrokeThickness="1"
+                                      Data="M0,0.5H10" />
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#B9B9B9" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" Value="#A5A5A5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ExpandWindowButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Path Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"
+                          StrokeThickness="1">
+                        <Path.Style>
+                            <Style TargetType="Path">
+                                <Setter Property="Data" Value="{DynamicResource ExpandIcon}" />
+
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                 Value="Maximized">
+                                        <Setter Property="Data" Value="{DynamicResource NormalizeIcon}" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Path.Style>
+                    </Path>
+                </Setter.Value>
+            </Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                UseLayoutRounding="True">
+                            <Viewbox Width="10" Height="10">
+                                <ContentPresenter />
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="#B9B9B9" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" Value="#A5A5A5" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Geometry x:Key="ExpandIcon">M0.5,0.5H9.5V9.5H0.5V0.5Z</Geometry>
+        <Geometry x:Key="NormalizeIcon">M0.5,9.5V2.5H7.5V9.5H0.5ZM2.5,2.5V0.5H9.5V7.5H7.5</Geometry>
 
     </Window.Resources>
 

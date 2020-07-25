@@ -90,7 +90,8 @@
                                 <ControlTemplate.Triggers>
 
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter TargetName="Bd" Property="Background" Value="#F7F7F7"></Setter>
+
+                                        <Setter TargetName="Bd" Property="Background" Value="#F7F7F7" />
 
                                         <Trigger.EnterActions>
                                             <BeginStoryboard>
@@ -115,6 +116,7 @@
                                                 </Storyboard>
                                             </BeginStoryboard>
                                         </Trigger.ExitActions>
+
                                     </Trigger>
 
                                     <Trigger Property="IsSelected" Value="True">
