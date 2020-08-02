@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Input;
 using EdgExplorer.Shared.ViewModels;
 
 namespace EdgExplorer.UI
@@ -8,25 +9,24 @@ namespace EdgExplorer.UI
         public MainWindow()
         {
             InitializeComponent();
+
+            CommandBindings.Add(new CommandBinding(SystemCommands.CloseWindowCommand, OnCloseWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.MaximizeWindowCommand, OnMaximizeWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.MinimizeWindowCommand, OnMinimizeWindow));
+            CommandBindings.Add(new CommandBinding(SystemCommands.RestoreWindowCommand, OnRestoreWindow));
         }
 
-        private void Collapse_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void Expand_OnClick(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState == WindowState.Normal 
-                ? WindowState.Maximized 
-                : WindowState.Normal;
-        }
-
-        private void Close_OnClick(object sender, RoutedEventArgs e)
+        private void OnCloseWindow(object sender, ExecutedRoutedEventArgs e)
         {
             if (DataContext is MainViewModel vm) vm.OnClosing();
 
-            Application.Current.Shutdown();
+            SystemCommands.CloseWindow(this);
         }
+
+        private void OnMaximizeWindow(object target, ExecutedRoutedEventArgs e) => SystemCommands.MaximizeWindow(this);
+
+        private void OnMinimizeWindow(object target, ExecutedRoutedEventArgs e) => SystemCommands.MinimizeWindow(this);
+
+        private void OnRestoreWindow(object target, ExecutedRoutedEventArgs e) => SystemCommands.RestoreWindow(this);
     }
 }

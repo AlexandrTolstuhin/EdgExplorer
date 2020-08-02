@@ -59,10 +59,10 @@ namespace EdgExplorer.Shared.ViewModels
 
         private void OnOpen(object parameter)
         {
-            if (!(parameter is DirectoryViewModel directoryViewModel)) return;
+            if (SelectedFileEntity is null) return;
 
-            FilePath = directoryViewModel.FullName;
-            Name = directoryViewModel.Name;
+            FilePath = SelectedFileEntity.FullName;
+            Name = SelectedFileEntity.Name;
 
             OpenDirectory();
 
