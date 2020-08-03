@@ -75,7 +75,7 @@
                                         <Button Style="{DynamicResource MinimizeWindowButtonStyle}" 
                                                 Width="45" Height="28" 
                                                 Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" />
-                                        <Button Style="{DynamicResource ExpandWindowButtonStyle}" 
+                                        <Button Style="{DynamicResource MaximizeOrRestoreWindowButtonStyle}" 
                                                 Width="45" Height="28" />
                                         <Button Style="{DynamicResource CloseWindowButtonStyle}" 
                                                 Width="45" Height="28" 
@@ -129,6 +129,7 @@
         </Style>
 
         <Style x:Key="BaseWindowButtonStyle" TargetType="{x:Type Button}">
+
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -141,6 +142,8 @@
         <Style x:Key="CloseWindowButtonStyle" 
                TargetType="{x:Type Button}"
                BasedOn="{StaticResource BaseWindowButtonStyle}">
+
+            <Setter Property="ToolTip" Value="Close" />
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -174,6 +177,8 @@
                TargetType="{x:Type Button}"
                BasedOn="{StaticResource BaseWindowButtonStyle}">
 
+            <Setter Property="ToolTip" Value="Minimize" />
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -201,13 +206,13 @@
 
         </Style>
 
-        <Style x:Key="ExpandWindowButtonStyle" 
+        <Style x:Key="MaximizeOrRestoreWindowButtonStyle" 
                TargetType="{x:Type Button}"
                BasedOn="{StaticResource BaseWindowButtonStyle}">
 
             <Style.Resources>
-                <Geometry x:Key="ExpandIcon">M0.5,0.5H9.5V9.5H0.5V0.5Z</Geometry>
-                <Geometry x:Key="NormalizeIcon">M0.5,9.5V2.5H7.5V9.5H0.5ZM2.5,2.5V0.5H9.5V7.5H7.5</Geometry>
+                <Geometry x:Key="MaximizeIcon">M0.5,0.5H9.5V9.5H0.5V0.5Z</Geometry>
+                <Geometry x:Key="RestoreIcon">M0.5,9.5V2.5H7.5V9.5H0.5ZM2.5,2.5V0.5H9.5V7.5H7.5</Geometry>
             </Style.Resources>
 
             <Setter Property="Content">
@@ -216,12 +221,12 @@
                           StrokeThickness="1">
                         <Path.Style>
                             <Style TargetType="Path">
-                                <Setter Property="Data" Value="{DynamicResource ExpandIcon}" />
+                                <Setter Property="Data" Value="{DynamicResource MaximizeIcon}" />
 
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
                                                  Value="Maximized">
-                                        <Setter Property="Data" Value="{DynamicResource NormalizeIcon}" />
+                                        <Setter Property="Data" Value="{DynamicResource RestoreIcon}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -229,6 +234,8 @@
                     </Path>
                 </Setter.Value>
             </Setter>
+
+            <Setter Property="ToolTip" Value="Maximize" />
 
             <Setter Property="Command" Value="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" />
 
@@ -246,6 +253,8 @@
                         <ControlTemplate.Triggers>
                             <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType=Window}}" 
                                          Value="Maximized">
+                                <Setter Property="ToolTip" Value="Restore" />
+
                                 <Setter Property="Command" Value="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" />
                             </DataTrigger>
                             <Trigger Property="IsMouseOver" Value="true">
