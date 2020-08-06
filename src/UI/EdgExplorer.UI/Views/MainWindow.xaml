@@ -505,9 +505,9 @@
         <Style x:Key="StatusBarTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Height" Value="28" />
             <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="BorderBrush" Value="#EFEFEF"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
             <Setter Property="KeyboardNavigation.TabNavigation" Value="None"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Center" />
@@ -525,14 +525,6 @@
                                 BorderBrush="{TemplateBinding BorderBrush}" 
                                 CornerRadius="5"
                                 SnapsToDevicePixels="True">
-
-                            <Border.Effect>
-                                <DropShadowEffect x:Name="shadow" 
-                                                  BlurRadius="3" 
-                                                  RenderingBias="Quality" 
-                                                  ShadowDepth="0" 
-                                                  Color="{TemplateBinding BorderBrush}" />
-                            </Border.Effect>
 
                             <ScrollViewer x:Name="PART_ContentHost" 
                                           Margin="10 0"
