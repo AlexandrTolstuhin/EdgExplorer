@@ -40,7 +40,6 @@ namespace EdgExplorer.Shared.ViewModels
         public DirectoryTabItemViewModel()
         {
             _history = new DirectoryHistory("My computer", "My computer");
-            _history.HistoryChanged += History_OnHistoryChanged;
 
             Name = _history.Current.DirectoryName;
             FilePath = _history.Current.DirectoryPath;
@@ -116,12 +115,6 @@ namespace EdgExplorer.Shared.ViewModels
                 foreach (var file in directoryInfo.GetFiles())
                     DirectoriesAndFiles.Add(new FileViewModel(file));
             }
-        }
-
-        private void History_OnHistoryChanged(object sender, EventArgs e)
-        {
-            MoveBack?.RaiseCanExecuteChanged();
-            MoveForward?.RaiseCanExecuteChanged();
         }
 
         #endregion

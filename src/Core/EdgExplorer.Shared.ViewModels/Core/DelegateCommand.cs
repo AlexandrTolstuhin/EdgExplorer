@@ -17,9 +17,10 @@ namespace EdgExplorer.Shared.ViewModels
         public void Execute(object parameter)
             => _action?.Invoke(parameter);
 
-        public event EventHandler CanExecuteChanged;
-
-        public void RaiseCanExecuteChanged()
-            => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+        public event EventHandler CanExecuteChanged
+        {
+            add => CommandManager.RequerySuggested += value;
+            remove => CommandManager.RequerySuggested -= value;
+        }
     }
 }
